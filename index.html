@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- ✏️ 改成你的名字 -->
-<title>个人主页</title>
-<meta name="description" content="个人主页：个人介绍、学历、个人项目与实习经历。">
+<title>史张倬悦 Troy · 个人主页</title>
+<meta name="description" content="史张倬悦（Troy）的个人主页：个人介绍、学历、个人项目与实习经历。">
 <style>
   :root {
     --bg: #ffffff;
@@ -79,6 +78,7 @@
     background: var(--accent-soft); color: var(--accent);
   }
   .sidebar h1 { font-size: 22px; margin: 16px 0 2px; }
+  .sidebar .en-name { font-size: 16px; margin: 0 0 6px; color: var(--muted); }
   .sidebar .role { color: var(--muted); font-size: 14px; margin: 0 0 16px; line-height: 1.5; }
   .links { list-style: none; padding: 0; margin: 0; font-size: 14px; }
   .links li { display: flex; align-items: center; gap: 8px; padding: 3px 0; color: var(--muted); }
@@ -126,9 +126,10 @@
   @media (max-width: 760px) {
     .layout { grid-template-columns: 1fr; gap: 24px; padding-top: 24px; }
     .sidebar { position: static; display: grid; grid-template-columns: 96px 1fr; gap: 0 16px; align-items: center; }
-    .avatar, .avatar-fallback { width: 96px; height: 96px; font-size: 36px; grid-row: span 2; }
+    .avatar, .avatar-fallback { width: 96px; height: 96px; font-size: 36px; grid-row: span 3; }
     .sidebar h1 { margin-top: 0; }
     .sidebar .role { margin-bottom: 0; }
+    .sidebar .en-name { margin: 0; }
     .links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 16px; }
     .brand { display: none; }
     .entry { grid-template-columns: 1fr; }
@@ -139,8 +140,7 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <!-- ✏️ 改成你的名字 -->
-    <a class="brand" href="#">你的名字</a>
+    <a class="brand" href="#">史张倬悦 Troy</a>
     <nav class="nav" id="nav">
       <a href="#about">关于我</a>
       <a href="#education">学历</a>
@@ -157,11 +157,12 @@
     <!--
       ✏️ 头像：把你的照片命名为 avatar.jpg 放在和 index.html 同一目录，
       然后把下面这行的注释去掉，并删除 avatar-fallback 那个 div。
-      <img class="avatar" src="avatar.jpg" alt="头像">
+      <img class="avatar" src="avatar.jpg" alt="史张倬悦的头像">
     -->
-    <div class="avatar-fallback" aria-hidden="true">?</div>
+    <div class="avatar-fallback" aria-hidden="true">史</div>
 
-    <h1>你的名字</h1>
+    <h1>史张倬悦</h1>
+    <p class="en-name">Troy</p>
     <p class="role">身份 / 学校</p>
 
     <ul class="links">
@@ -234,7 +235,7 @@
     </section>
 
     <footer>
-      © <span id="year"></span> · 托管于 GitHub Pages
+      © <span id="year"></span> 史张倬悦 Troy · 托管于 GitHub Pages
     </footer>
   </main>
 </div>
