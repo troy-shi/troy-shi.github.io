@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,6 +56,13 @@
   .nav::-webkit-scrollbar { display: none; }
   .nav a { color: var(--muted); white-space: nowrap; font-size: 15px; }
   .nav a:hover, .nav a.active { color: var(--text); text-decoration: none; }
+  /* 中英切换：html[data-lang] 决定显示 .zh 还是 .en */
+  html[data-lang="zh"] .en, html[data-lang="en"] .zh { display: none !important; }
+  .tools { display: flex; gap: 8px; flex-shrink: 0; }
+  .lang-btn {
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    border-radius: 6px; height: 34px; padding: 0 10px; cursor: pointer; font-size: 14px; font-weight: 600;
+  }
   .theme-btn {
     border: 1px solid var(--line); background: var(--surface); color: var(--text);
     border-radius: 6px; width: 34px; height: 34px; cursor: pointer; font-size: 16px;
@@ -140,14 +147,17 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#">史张倬悦 Troy</a>
+    <a class="brand" href="#"><span class="zh">史张倬悦 Troy</span><span class="en">Troy · 史张倬悦</span></a>
     <nav class="nav" id="nav">
-      <a href="#about">关于我</a>
-      <a href="#education">学历</a>
-      <a href="#projects">个人项目</a>
-      <a href="#internship">实习</a>
+      <a href="#about"><span class="zh">关于我</span><span class="en">About</span></a>
+      <a href="#education"><span class="zh">学历</span><span class="en">Education</span></a>
+      <a href="#projects"><span class="zh">个人项目</span><span class="en">Projects</span></a>
+      <a href="#internship"><span class="zh">实习</span><span class="en">Internships</span></a>
     </nav>
-    <button class="theme-btn" id="themeBtn" aria-label="切换深浅色">◐</button>
+    <div class="tools">
+      <button class="lang-btn" id="langBtn" aria-label="Switch language / 切换语言"><span class="zh">EN</span><span class="en">中</span></button>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode / 切换深浅色">◐</button>
+    </div>
   </div>
 </header>
 
@@ -159,16 +169,16 @@
       然后把下面这行的注释去掉，并删除 avatar-fallback 那个 div。
       <img class="avatar" src="avatar.jpg" alt="史张倬悦的头像">
     -->
-    <div class="avatar-fallback" aria-hidden="true">史</div>
+    <div class="avatar-fallback" aria-hidden="true"><span class="zh">史</span><span class="en">T</span></div>
 
-    <h1>史张倬悦</h1>
-    <p class="en-name">Troy</p>
-    <p class="role">身份 / 学校</p>
+    <h1><span class="zh">史张倬悦</span><span class="en">Troy</span></h1>
+    <p class="en-name"><span class="zh">Troy</span><span class="en">史张倬悦</span></p>
+    <p class="role"><span class="zh">身份 / 学校</span><span class="en">Title / School</span></p>
 
     <ul class="links">
       <li>
         <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-        <span>所在城市</span>
+        <span><span class="zh">所在城市</span><span class="en">City</span></span>
       </li>
       <li>
         <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -180,7 +190,7 @@
       </li>
       <li>
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v2H8v-2zm0 4h8v2H8v-2z"/></svg>
-        <a href="cv.pdf">简历 CV (PDF)</a>
+        <a href="cv.pdf"><span class="zh">简历 (PDF)</span><span class="en">CV (PDF)</span></a>
       </li>
     </ul>
   </aside>
@@ -188,16 +198,17 @@
   <!-- ================= 右侧主内容 ================= -->
   <main>
     <section id="about">
-      <h2>关于我</h2>
-      <div class="placeholder">待填写：个人介绍</div>
-      <!-- 示例：
-      <p>你好！我是……</p>
+      <h2><span class="zh">关于我</span><span class="en">About Me</span></h2>
+      <div class="placeholder"><span class="zh">待填写：个人介绍</span><span class="en">Coming soon: About me</span></div>
+      <!-- 示例（中英文各写一份，class="zh" 中文、class="en" 英文）：
+      <p class="zh">你好！我是……</p>
+      <p class="en">Hi! I'm Troy……</p>
       -->
     </section>
 
     <section id="education">
-      <h2>学历</h2>
-      <div class="placeholder">待填写：教育经历</div>
+      <h2><span class="zh">学历</span><span class="en">Education</span></h2>
+      <div class="placeholder"><span class="zh">待填写：教育经历</span><span class="en">Coming soon: Education</span></div>
       <!-- 示例（每段学历复制一个 entry）：
       <div class="entry">
         <h3>学校名称 · 专业 学位</h3>
@@ -208,8 +219,8 @@
     </section>
 
     <section id="projects">
-      <h2>个人项目</h2>
-      <div class="placeholder">待填写：个人项目</div>
+      <h2><span class="zh">个人项目</span><span class="en">Projects</span></h2>
+      <div class="placeholder"><span class="zh">待填写：个人项目</span><span class="en">Coming soon: Projects</span></div>
       <!-- 示例（把 placeholder 换成下面的 cards，每个项目一个 card）：
       <div class="cards">
         <div class="card">
@@ -222,8 +233,8 @@
     </section>
 
     <section id="internship">
-      <h2>实习</h2>
-      <div class="placeholder">待填写：实习经历</div>
+      <h2><span class="zh">实习</span><span class="en">Internships</span></h2>
+      <div class="placeholder"><span class="zh">待填写：实习经历</span><span class="en">Coming soon: Internships</span></div>
       <!-- 示例（每段实习复制一个 entry）：
       <div class="entry">
         <h3>公司名称 · 职位</h3>
@@ -235,13 +246,31 @@
     </section>
 
     <footer>
-      © <span id="year"></span> 史张倬悦 Troy · 托管于 GitHub Pages
+      © <span id="year"></span> <span class="zh">史张倬悦 Troy · 托管于 GitHub Pages</span><span class="en">Troy (史张倬悦) · Hosted on GitHub Pages</span>
     </footer>
   </main>
 </div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 中英文切换：优先用访客上次的选择，否则按浏览器语言
+  const TITLES = { zh: '史张倬悦 Troy · 个人主页', en: 'Troy (史张倬悦) · Personal Homepage' };
+  function setLang(lang) {
+    document.documentElement.dataset.lang = lang;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = TITLES[lang];
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+  let initLang = null;
+  try { initLang = localStorage.getItem('lang'); } catch (e) {}
+  if (initLang !== 'zh' && initLang !== 'en') {
+    initLang = (navigator.language || 'zh').toLowerCase().startsWith('zh') ? 'zh' : 'en';
+  }
+  setLang(initLang);
+  document.getElementById('langBtn').addEventListener('click', () => {
+    setLang(document.documentElement.dataset.lang === 'zh' ? 'en' : 'zh');
+  });
 
   // 深浅色切换（记住访客的选择）
   const root = document.documentElement;

@@ -36,3 +36,14 @@ git branch -M main
 git remote add origin https://github.com/你的用户名/你的用户名.github.io.git
 git push -u origin main
 ```
+
+## 中英文切换
+
+页面右上角的 `EN / 中` 按钮切换语言。每段文字都写两份：
+
+```html
+<p class="zh">中文内容</p>
+<p class="en">English content</p>
+```
+
+`class="zh"` 只在中文模式显示，`class="en"` 只在英文模式显示。访客第一次打开时按浏览器语言选择，之后记住他们的选择。
