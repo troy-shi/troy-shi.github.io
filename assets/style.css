@@ -80,6 +80,10 @@
     flex-shrink: 0;
   }
 
+  /* 脚本渲染前先占住顶栏高度，避免页面跳动 */
+  #topbar { height: 57px; border-bottom: 1px solid var(--line); }
+  .card .card-desc p { font-size: 14px; color: var(--muted); margin: 6px 0 10px; }
+
   /* ---------- 主体布局 ---------- */
   .layout {
     max-width: 1100px; margin: 0 auto; padding: 32px 16px 64px;

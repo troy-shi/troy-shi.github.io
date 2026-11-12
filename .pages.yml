@@ -1,0 +1,175 @@
+# Pages CMS 编辑器配置：https://app.pagescms.org
+# 用 GitHub 账号登录后，选择这个仓库，就能用表单编辑网站内容。
+
+media:
+  input: assets/uploads
+  output: /assets/uploads
+
+content:
+  - name: profile
+    label: 个人信息（左侧栏）
+    type: file
+    path: data/profile.json
+    fields:
+      - name: name_zh
+        label: 名字（中文）
+        type: string
+      - name: name_en
+        label: 名字（英文）
+        type: string
+      - name: role_zh
+        label: 身份 / 学校（中文）
+        type: string
+      - name: role_en
+        label: 身份 / 学校（英文）
+        type: string
+      - name: city_zh
+        label: 所在城市（中文）
+        type: string
+      - name: city_en
+        label: 所在城市（英文）
+        type: string
+      - name: avatar
+        label: 头像照片
+        type: image
+      - name: email
+        label: 邮箱
+        type: string
+        description: 不填就不显示
+      - name: github
+        label: GitHub 链接
+        type: string
+        description: 例如 https://github.com/troy-shi，不填就不显示
+      - name: linkedin
+        label: LinkedIn 链接
+        type: string
+        description: 不填就不显示
+      - name: cv
+        label: 简历 PDF
+        type: file
+        description: 上传 PDF，不填就不显示
+
+  - name: about
+    label: 关于我
+    type: file
+    path: data/about.json
+    fields:
+      - name: about_zh
+        label: 个人介绍（中文）
+        type: text
+        description: 空一行表示分段
+      - name: about_en
+        label: 个人介绍（英文）
+        type: text
+        description: Leave a blank line between paragraphs
+
+  - name: education
+    label: 学历
+    type: file
+    path: data/education.json
+    fields:
+      - name: items
+        label: 教育经历
+        type: object
+        list:
+          collapsible:
+            summary: "{school_zh}"
+        fields:
+          - name: school_zh
+            label: 学校（中文）
+            type: string
+          - name: school_en
+            label: 学校（英文）
+            type: string
+          - name: degree_zh
+            label: 专业 / 学位（中文）
+            type: string
+          - name: degree_en
+            label: 专业 / 学位（英文）
+            type: string
+          - name: period
+            label: 时间
+            type: string
+            description: 例如 2025 – 2027
+          - name: details_zh
+            label: 补充说明（中文）
+            type: text
+            description: GPA、荣誉、主要课程等，可不填
+          - name: details_en
+            label: 补充说明（英文）
+            type: text
+
+  - name: projects
+    label: 个人项目
+    type: file
+    path: data/projects.json
+    fields:
+      - name: items
+        label: 项目
+        type: object
+        list:
+          collapsible:
+            summary: "{name_zh}"
+        fields:
+          - name: name_zh
+            label: 项目名称（中文）
+            type: string
+          - name: name_en
+            label: 项目名称（英文）
+            type: string
+          - name: link
+            label: 项目链接
+            type: string
+            description: GitHub 或演示地址，可不填
+          - name: desc_zh
+            label: 项目介绍（中文）
+            type: text
+          - name: desc_en
+            label: 项目介绍（英文）
+            type: text
+          - name: tags
+            label: 技术标签
+            type: string
+            list: true
+            description: 例如 Python、React，每个标签一项
+
+  - name: internship
+    label: 实习
+    type: file
+    path: data/internship.json
+    fields:
+      - name: items
+        label: 实习经历
+        type: object
+        list:
+          collapsible:
+            summary: "{company_zh}"
+        fields:
+          - name: company_zh
+            label: 公司（中文）
+            type: string
+          - name: company_en
+            label: 公司（英文）
+            type: string
+          - name: role_zh
+            label: 职位（中文）
+            type: string
+          - name: role_en
+            label: 职位（英文）
+            type: string
+          - name: period
+            label: 时间
+            type: string
+            description: 例如 2026.06 – 2026.08
+          - name: team_zh
+            label: 部门 / 团队（中文）
+            type: string
+          - name: team_en
+            label: 部门 / 团队（英文）
+            type: string
+          - name: desc_zh
+            label: 工作内容（中文）
+            type: text
+          - name: desc_en
+            label: 工作内容（英文）
+            type: text
