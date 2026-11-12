@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>实习 · 史张倬悦 Troy</title>
+<meta name="description" content="史张倬悦（Troy）的个人主页 · Personal homepage of Troy">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  // 尽早设置语言和深浅色，避免页面闪一下
+  (function () {
+    var r = document.documentElement, l = null, th = null;
+    try { l = localStorage.getItem('lang'); th = localStorage.getItem('theme'); } catch (e) {}
+    if (l !== 'zh' && l !== 'en') l = (navigator.language || 'zh').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+    r.dataset.lang = l; r.lang = l === 'zh' ? 'zh-CN' : 'en';
+    if (th) r.dataset.theme = th;
+  })();
+</script>
+</head>
+<body data-page="internship" data-title='{"zh":"实习 · 史张倬悦 Troy","en":"Internships · Troy"}'>
+<div id="topbar"></div>
+<div class="layout">
+  <div id="sidebar"></div>
+  <main>
+    <section>
+      <h2><span class="zh">实习</span><span class="en">Internships</span></h2>
+      <div class="placeholder"><span class="zh">待填写：实习经历</span><span class="en">Coming soon: Internships</span></div>
+      <!-- ✏️ 每段实习复制一个 entry，然后删掉上面的 placeholder：
+      <div class="entry">
+        <h3><span class="zh">公司名称 · 职位</span><span class="en">Company · Position</span></h3>
+        <span class="when">2026.07 – 2026.09</span>
+        <span class="sub"><span class="zh">部门 / 团队</span><span class="en">Team</span></span>
+        <p class="desc zh">做了什么、取得了什么成果。</p>
+        <p class="desc en">What you did and achieved.</p>
+      </div>
+      -->
+    </section>
+
+    <footer>
+      © <span id="year"></span>
+      <span class="zh">史张倬悦 Troy · 托管于 GitHub Pages</span><span class="en">Troy (史张倬悦) · Hosted on GitHub Pages</span>
+    </footer>
+  </main>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>

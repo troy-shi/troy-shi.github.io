@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>个人项目 · 史张倬悦 Troy</title>
+<meta name="description" content="史张倬悦（Troy）的个人主页 · Personal homepage of Troy">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  // 尽早设置语言和深浅色，避免页面闪一下
+  (function () {
+    var r = document.documentElement, l = null, th = null;
+    try { l = localStorage.getItem('lang'); th = localStorage.getItem('theme'); } catch (e) {}
+    if (l !== 'zh' && l !== 'en') l = (navigator.language || 'zh').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+    r.dataset.lang = l; r.lang = l === 'zh' ? 'zh-CN' : 'en';
+    if (th) r.dataset.theme = th;
+  })();
+</script>
+</head>
+<body data-page="projects" data-title='{"zh":"个人项目 · 史张倬悦 Troy","en":"Projects · Troy"}'>
+<div id="topbar"></div>
+<div class="layout">
+  <div id="sidebar"></div>
+  <main>
+    <section>
+      <h2><span class="zh">个人项目</span><span class="en">Projects</span></h2>
+      <div class="placeholder"><span class="zh">待填写：个人项目</span><span class="en">Coming soon: Projects</span></div>
+      <!-- ✏️ 每个项目一个 card，然后删掉上面的 placeholder：
+      <div class="cards">
+        <div class="card">
+          <h3><a href="https://github.com/用户名/项目名"><span class="zh">项目名称</span><span class="en">Project Name</span></a></h3>
+          <p class="zh">一句话介绍项目。</p>
+          <p class="en">One-line description.</p>
+          <div class="tags"><span class="tag">Python</span></div>
+        </div>
+      </div>
+      -->
+    </section>
+
+    <footer>
+      © <span id="year"></span>
+      <span class="zh">史张倬悦 Troy · 托管于 GitHub Pages</span><span class="en">Troy (史张倬悦) · Hosted on GitHub Pages</span>
+    </footer>
+  </main>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>

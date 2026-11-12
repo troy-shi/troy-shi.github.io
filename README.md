@@ -37,13 +37,26 @@ git remote add origin https://github.com/你的用户名/你的用户名.github.
 git push -u origin main
 ```
 
+## 文件结构
+
+| 文件 | 内容 |
+| --- | --- |
+| `index.html` | 关于我（首页） |
+| `education.html` | 学历 |
+| `projects.html` | 个人项目 |
+| `internship.html` | 实习 |
+| `assets/site.js` | 顶部导航、左侧个人信息栏、语言菜单（**名字、链接、头像都在这里改一次即可**） |
+| `assets/style.css` | 全站样式 |
+
+每个页面的内容写在各自文件的 `<main>` 里，文件中有注释掉的示例格式可以照抄。
+
 ## 中英文切换
 
-页面右上角的 `EN / 中` 按钮切换语言。每段文字都写两份：
+右上角 🌐 按钮打开语言菜单，可选「中文」或「English」。每段文字都写两份：
 
 ```html
 <p class="zh">中文内容</p>
 <p class="en">English content</p>
 ```
 
-`class="zh"` 只在中文模式显示，`class="en"` 只在英文模式显示。访客第一次打开时按浏览器语言选择，之后记住他们的选择。
+`class="zh"` 只在中文模式显示，`class="en"` 只在英文模式显示。访客第一次打开时按浏览器语言选择，之后在所有页面记住他们的选择。
