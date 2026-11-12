@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ✏️ 改成你的名字 -->
+<title>个人主页</title>
+<meta name="description" content="个人主页：个人介绍、学历、个人项目与实习经历。">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f7f7f8;
+    --text: #222831;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --accent: #2f6fb3;
+    --accent-soft: #e8f0fa;
+    --warn-bg: #fff8e6;
+    --warn-line: #f2c94c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16181d; --surface: #1f2228; --text: #e6e8eb; --muted: #9aa1ab;
+      --line: #2e323a; --accent: #6aa8ec; --accent-soft: #1d2a3a;
+      --warn-bg: #2a2516; --warn-line: #8a7020;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16181d; --surface: #1f2228; --text: #e6e8eb; --muted: #9aa1ab;
+    --line: #2e323a; --accent: #6aa8ec; --accent-soft: #1d2a3a;
+    --warn-bg: #2a2516; --warn-line: #8a7020;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", Roboto, sans-serif;
+    font-size: 16px; line-height: 1.7;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ---------- 顶部导航 ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 16px;
+    display: flex; align-items: center; gap: 24px; height: 56px;
+  }
+  .brand { font-weight: 700; color: var(--text); white-space: nowrap; }
+  .nav { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; flex: 1; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--muted); white-space: nowrap; font-size: 15px; }
+  .nav a:hover, .nav a.active { color: var(--text); text-decoration: none; }
+  .theme-btn {
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    border-radius: 6px; width: 34px; height: 34px; cursor: pointer; font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ---------- 主体布局 ---------- */
+  .layout {
+    max-width: 1100px; margin: 0 auto; padding: 32px 16px 64px;
+    display: grid; grid-template-columns: 240px 1fr; gap: 48px;
+  }
+  .sidebar { position: sticky; top: 88px; align-self: start; }
+  .avatar {
+    width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+    display: block; background: var(--accent-soft);
+  }
+  .avatar-fallback {
+    width: 160px; height: 160px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 56px; font-weight: 700;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  .sidebar h1 { font-size: 22px; margin: 16px 0 2px; }
+  .sidebar .role { color: var(--muted); font-size: 14px; margin: 0 0 16px; line-height: 1.5; }
+  .links { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+  .links li { display: flex; align-items: center; gap: 8px; padding: 3px 0; color: var(--muted); }
+  .links svg { width: 16px; height: 16px; flex-shrink: 0; fill: currentColor; }
+  .links a { color: var(--text); }
+  .links a:hover { color: var(--accent); }
+
+  main { min-width: 0; }
+  section { margin-bottom: 48px; }
+  h2 {
+    font-size: 24px; margin: 0 0 16px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: 17px; margin: 0; }
+  p { margin: 0 0 12px; }
+
+
+
+  .entry { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-bottom: 20px; }
+  .entry .when { color: var(--muted); font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .entry .sub { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
+  .entry .desc { grid-column: 1 / -1; font-size: 15px; margin-top: 4px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+  .card {
+    border: 1px solid var(--line); border-radius: 8px; padding: 16px;
+    background: var(--surface);
+  }
+  .card p { font-size: 14px; color: var(--muted); margin: 6px 0 10px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12px; padding: 2px 8px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+
+
+  .placeholder {
+    border: 1.5px dashed var(--line); border-radius: 8px;
+    padding: 28px 16px; text-align: center; color: var(--muted); font-size: 14px;
+  }
+
+  footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+
+  /* ---------- 手机端 ---------- */
+  @media (max-width: 760px) {
+    .layout { grid-template-columns: 1fr; gap: 24px; padding-top: 24px; }
+    .sidebar { position: static; display: grid; grid-template-columns: 96px 1fr; gap: 0 16px; align-items: center; }
+    .avatar, .avatar-fallback { width: 96px; height: 96px; font-size: 36px; grid-row: span 2; }
+    .sidebar h1 { margin-top: 0; }
+    .sidebar .role { margin-bottom: 0; }
+    .links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 16px; }
+    .brand { display: none; }
+    .entry { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <!-- ✏️ 改成你的名字 -->
+    <a class="brand" href="#">你的名字</a>
+    <nav class="nav" id="nav">
+      <a href="#about">关于我</a>
+      <a href="#education">学历</a>
+      <a href="#projects">个人项目</a>
+      <a href="#internship">实习</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" aria-label="切换深浅色">◐</button>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- ================= 左侧栏 ================= -->
+  <aside class="sidebar">
+    <!--
+      ✏️ 头像：把你的照片命名为 avatar.jpg 放在和 index.html 同一目录，
+      然后把下面这行的注释去掉，并删除 avatar-fallback 那个 div。
+      <img class="avatar" src="avatar.jpg" alt="头像">
+    -->
+    <div class="avatar-fallback" aria-hidden="true">?</div>
+
+    <h1>你的名字</h1>
+    <p class="role">身份 / 学校</p>
+
+    <ul class="links">
+      <li>
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+        <span>所在城市</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <a href="mailto:you@example.com">Email</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>
+        <a href="https://github.com/your-username">GitHub</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v2H8v-2zm0 4h8v2H8v-2z"/></svg>
+        <a href="cv.pdf">简历 CV (PDF)</a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ================= 右侧主内容 ================= -->
+  <main>
+    <section id="about">
+      <h2>关于我</h2>
+      <div class="placeholder">待填写：个人介绍</div>
+      <!-- 示例：
+      <p>你好！我是……</p>
+      -->
+    </section>
+
+    <section id="education">
+      <h2>学历</h2>
+      <div class="placeholder">待填写：教育经历</div>
+      <!-- 示例（每段学历复制一个 entry）：
+      <div class="entry">
+        <h3>学校名称 · 专业 学位</h3>
+        <span class="when">2021 – 2025</span>
+        <span class="sub">GPA / 排名 / 荣誉</span>
+      </div>
+      -->
+    </section>
+
+    <section id="projects">
+      <h2>个人项目</h2>
+      <div class="placeholder">待填写：个人项目</div>
+      <!-- 示例（把 placeholder 换成下面的 cards，每个项目一个 card）：
+      <div class="cards">
+        <div class="card">
+          <h3><a href="https://github.com/你的用户名/项目名">项目名称</a></h3>
+          <p>一句话介绍项目。</p>
+          <div class="tags"><span class="tag">技术栈</span></div>
+        </div>
+      </div>
+      -->
+    </section>
+
+    <section id="internship">
+      <h2>实习</h2>
+      <div class="placeholder">待填写：实习经历</div>
+      <!-- 示例（每段实习复制一个 entry）：
+      <div class="entry">
+        <h3>公司名称 · 职位</h3>
+        <span class="when">2026.07 – 2026.09</span>
+        <span class="sub">部门 / 团队</span>
+        <p class="desc">做了什么、取得了什么成果。</p>
+      </div>
+      -->
+    </section>
+
+    <footer>
+      © <span id="year"></span> · 托管于 GitHub Pages
+    </footer>
+  </main>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 深浅色切换（记住访客的选择）
+  const root = document.documentElement;
+  try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    const dark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+  });
+
+  // 滚动时高亮当前导航项
+  const links = [...document.querySelectorAll('#nav a')];
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('main section').forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
